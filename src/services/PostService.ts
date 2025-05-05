@@ -4,9 +4,12 @@ import IPost from "../interfaces/IPost";
 class PostService{
 
 private posts:IPost[] ;
+private post: IPost | null = null;
 
 constructor(){
     this.posts = [];
+    this.post = null; // Initialize post to null
+    // Removed invalid assignment as 'post' is not defined
 }
 
 async getPosts():Promise<Array<IPost>>{
@@ -26,8 +29,8 @@ async getPostById(id: number): Promise<IPost | null> {
     try {
       const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       if (response.ok) {
-        const post = await response.json() as IPost;
-        return post;
+        this.post = await response.json();
+        return this.post 
       } else {
         console.error("Error fetching post:", response.statusText)
       }
