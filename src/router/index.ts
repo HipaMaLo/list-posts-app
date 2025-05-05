@@ -6,6 +6,11 @@ import PostViewDet from '../views/PostViewDet.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    redirect: '/posts'
+  },
+  
+  {
+    path: '/posts',
     name: 'posts',
     component: PostsView
   },
